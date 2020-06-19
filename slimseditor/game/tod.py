@@ -1,5 +1,4 @@
-from reloadr import autoreload
-
+from slimseditor.reloadmagic import autoreload
 from slimseditor.saveentry import RangedShort, Boolean, Integer
 
 

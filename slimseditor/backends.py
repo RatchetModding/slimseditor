@@ -1,9 +1,8 @@
 import os
 import struct
 
-from reloadr import autoreload
-
 from slimseditor.game import Game
+from slimseditor.reloadmagic import autoreload
 
 
 class AbstractBackend:
@@ -15,7 +14,12 @@ class AbstractBackend:
         return self.path
 
     def get_items(self):
-        return dict()
+        items = self.game.get_items()
+        for section, section_items in items.items():
+            for item in section_items:
+                self.read_item(item)
+
+        return items
 
     def read_data(self):
         pass
@@ -24,6 +28,12 @@ class AbstractBackend:
         pass
 
     def write_all_items(self, items):
+        pass
+
+    def read_item(self, item):
+        pass
+
+    def write_item(self, item):
         pass
 
 
@@ -61,14 +71,6 @@ class PS2BinBackend(AbstractBackend):
                 self.game = game
                 return
 
-    def get_items(self):
-        items = self.game.get_items()
-        for section, section_items in items.items():
-            for item in section_items:
-                self.read_item(item)
-
-        return items
-
     def read_item(self, item):
         struct_def = '<{0}'.format(item.struct_type)
         item.value, = struct.unpack_from(struct_def, self.data, item.pos)
@@ -81,3 +83,95 @@ class PS2BinBackend(AbstractBackend):
         for section, section_items in items.items():
             for item in section_items:
                 self.write_item(item)
+
+
+PS3_GAME_IDS = {
+    Game.RAC: ["NPEA00385", "NPUA80643", "NPJA40001"],
+    Game.GC: ["NPEA00386", "NPUA80644", "NPJA40002"],
+    Game.UYA: ["NPEA00387", "NPUA80645", "NPJA40003"],
+    Game.DL: ["NPEA00423"],
+    Game.TOD: [
+        "BCAS20045", "BCES00052", "NPUA98153",
+        "BCJS30014", "BCJS70004", "BCJS70012",
+        "BCKS10016", "BCKS10054", "BCUS98127",
+        "NPEA90017", "NPHA20002", "NPJA90035",
+    ],
+    Game.QFB: [
+        "BCUS98187", "NPUA80145", "BLES00301",
+        "NPEA00088", "BCES00301"
+    ],
+    Game.ACIT: [
+        "BCUS98124", "BCES00142", "BCES00511", "BCES00748",
+        "BCES00726", "BCJS30038", "BCKS10087", "BCAS20098",
+    ],
+}
+
+
+def get_ps3_key(game):
+    if game == Game.RAC:
+        return '01020304050607FACB0A0B0C0D0E0F10'
+    elif game == Game.GC:
+        return 'C0A3B3641C2AD1EF23153A48A3E12FE8'
+    elif game == Game.UYA:
+        return 'C0A3B3641C2AD1EF23153A48A3E12FE7'
+    else:
+        return 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+
+
+USR_DATA_GAMES = [Game.RAC, Game.GC, Game.UYA, Game.DL]
+
+
+@autoreload
+class PS3Backend(AbstractBackend):
+    def __init__(self, path):
+        self.data = b''
+        self.path = path
+        self.game = Game.ERROR
+        self.encrypted = os.path.exists(os.path.join(path, 'PARAM.PFD'))
+        self.detect_game()
+        self.read_data()
+
+    def read_data(self):
+        if self.encrypted:
+            pass
+        else:
+            self.read_data_decrypted(self.path)
+
+    def read_data_decrypted(self, path):
+        data_file = os.path.join(path, self.get_filename())
+        with open(data_file, 'rb') as f:
+            self.data = bytearray(f.read())
+
+    def read_item(self, item):
+        struct_def = '>{0}'.format(item.struct_type)
+        item.value, = struct.unpack_from(struct_def, self.data, item.pos)
+
+    def write_item(self, item):
+        struct_def = '>{0}'.format(item.struct_type)
+        struct.pack_into(struct_def, self.data, item.pos, item.value)
+
+    def get_filename(self):
+        if self.game in USR_DATA_GAMES:
+            return 'USR-DATA'
+        return 'GAME.SAV'
+
+    def match_region_to_game(self, region):
+        for game, game_ids in PS3_GAME_IDS.items():
+            if region in game_ids:
+                self.game = game
+                return
+
+    def detect_game(self):
+        dirname = os.path.basename(self.path)
+        try:
+            region = dirname.split('_')[0]
+            self.match_region_to_game(region)
+        except IndexError:
+            pass
+
+        if self.game == Game.ERROR:
+            with open(os.path.join(self.path, 'PARAM.SFO'), 'rb') as f:
+                f.seek(0x968)
+                region_sfo = f.read(9).decode('ascii')
+
+            self.match_region_to_game(region_sfo)

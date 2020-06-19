@@ -6,9 +6,8 @@ from collections import defaultdict
 import bimpy
 import filedialog
 
-from reloadr import autoreload
-
-from slimseditor.backends import PS2BinBackend
+from slimseditor.backends import PS2BinBackend, PS3Backend
+from slimseditor.reloadmagic import autoreload
 from slimseditor.savegame import SaveGame
 
 
@@ -56,10 +55,10 @@ def process_envvars():
         for path in ps2_bin.split(':'):
             open_savegames.append(SaveGame(path, PS2BinBackend))
 
-    ps3_unencrypted = os.environ.get('OPEN_PS3UNENC', '')
-    if ps3_unencrypted:
-        for path in ps3_unencrypted.split(':'):
-            open_savegames.append(SaveGame(path, PS2BinBackend))
+    ps3_savegames = os.environ.get('OPEN_PS3', '')
+    if ps3_savegames:
+        for path in ps3_savegames.split(':'):
+            open_savegames.append(SaveGame(path, PS3Backend))
 
 
 def main():

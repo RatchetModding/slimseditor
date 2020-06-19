@@ -2,9 +2,8 @@ from collections import defaultdict
 
 import bimpy
 
-from reloadr import autoreload
-
 from slimseditor.backends import AbstractBackend
+from slimseditor.reloadmagic import autoreload
 
 
 counter = 0
@@ -30,7 +29,13 @@ class SaveGame:
 
     def load_backend(self):
         self.backend = self.backend_class(self.path)  # type: AbstractBackend
-        self.items = self.backend.get_items()
+        try:
+            self.items = self.backend.get_items()
+        except KeyboardInterrupt as e:
+            raise e
+        except Exception as e:
+            self.items = dict()
+            print(str(e))
 
     def render(self):
         if not self._size:
@@ -44,6 +49,10 @@ class SaveGame:
                 bimpy.menu_item('Save', 'Cmd+S', self.click_states['save'])
                 bimpy.menu_item('Reload', 'Cmd+R', self.click_states['reload'])
                 bimpy.end_menu_bar()
+
+            bimpy.text('Game: ')
+            bimpy.same_line()
+            bimpy.text(self.backend.game.value)
 
             for section_name, section_items in self.items.items():
                 if bimpy.collapsing_header(section_name):
