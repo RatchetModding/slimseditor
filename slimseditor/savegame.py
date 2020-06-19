@@ -19,11 +19,12 @@ def get_next_count():
 @autoreload
 class SaveGame:
     def __init__(self, path, backend_class=None):
+        self._size = None
         self.path = path
         self.backend_class = backend_class
         self.load_backend()
 
-        self.name = '{0} - {1}'.format(self.backend.get_friendly_name(), get_next_count())
+        self.name = '{0}##{1}'.format(self.backend.get_friendly_name(), get_next_count())
         self.opened = bimpy.Bool(True)
         self.click_states = defaultdict(bimpy.Bool)
 
@@ -32,6 +33,10 @@ class SaveGame:
         self.items = self.backend.get_items()
 
     def render(self):
+        if not self._size:
+            self._size = bimpy.Vec2(400, 600)
+            bimpy.set_next_window_size(self._size)
+
         if bimpy.begin(self.name, self.opened,
                        flags=bimpy.WindowFlags.NoCollapse | bimpy.WindowFlags.MenuBar):
 
@@ -49,6 +54,8 @@ class SaveGame:
 
     def process_events(self):
         if self.click_states['save'].value:
+            self.backend.write_all_items(self.items)
+            self.backend.write_data()
             self.click_states['save'].value = False
 
         if self.click_states['reload'].value:

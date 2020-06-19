@@ -1,3 +1,4 @@
+import os
 import sys
 
 from collections import defaultdict
@@ -49,13 +50,22 @@ def process_menu_bar_events():
         click_states['open_ps2_bin'].value = False
 
 
+def process_envvars():
+    ps2_bin = os.environ.get('OPEN_PS2BIN', '')
+    if ps2_bin:
+        for path in ps2_bin.split(':'):
+            open_savegames.append(SaveGame(path, PS2BinBackend))
+
+    ps3_unencrypted = os.environ.get('OPEN_PS3UNENC', '')
+    if ps3_unencrypted:
+        for path in ps3_unencrypted.split(':'):
+            open_savegames.append(SaveGame(path, PS2BinBackend))
+
+
 def main():
+    process_envvars()
     ctx = bimpy.Context()
     ctx.init(600, 600, "Slim's Editor")
-
-    default_window_size = bimpy.Vec2(400, 300)
-    with ctx:
-        bimpy.set_next_window_size(default_window_size)
 
     while not ctx.should_close():
         with ctx:

@@ -1,11 +1,9 @@
 import os
-
-from copy import deepcopy
-from struct import Struct
+import struct
 
 from reloadr import autoreload
 
-from slimseditor.game import ITEMS, Game
+from slimseditor.game import Game
 
 
 class AbstractBackend:
@@ -18,6 +16,15 @@ class AbstractBackend:
 
     def get_items(self):
         return dict()
+
+    def read_data(self):
+        pass
+
+    def write_data(self):
+        pass
+
+    def write_all_items(self, items):
+        pass
 
 
 PS2_GAME_IDS = {
@@ -32,6 +39,7 @@ PS2_GAME_IDS = {
 @autoreload
 class PS2BinBackend(AbstractBackend):
     def __init__(self, path):
+        self.data = b''
         self.path = path
         self.game = Game.ERROR
         self.detect_game()
@@ -39,7 +47,11 @@ class PS2BinBackend(AbstractBackend):
 
     def read_data(self):
         with open(self.path, 'rb') as f:
-            self.data = f.read()
+            self.data = bytearray(f.read())
+
+    def write_data(self):
+        with open(self.path, 'wb') as f:
+            f.write(self.data)
 
     def detect_game(self):
         dirname = os.path.basename(os.path.dirname(self.path))
@@ -50,7 +62,7 @@ class PS2BinBackend(AbstractBackend):
                 return
 
     def get_items(self):
-        items = ITEMS[self.game]()
+        items = self.game.get_items()
         for section, section_items in items.items():
             for item in section_items:
                 self.read_item(item)
@@ -59,8 +71,13 @@ class PS2BinBackend(AbstractBackend):
 
     def read_item(self, item):
         struct_def = '<{0}'.format(item.struct_type)
-        struct_parser = Struct(struct_def)
-        item.value, = struct_parser.unpack_from(self.data, item.pos)
+        item.value, = struct.unpack_from(struct_def, self.data, item.pos)
 
     def write_item(self, item):
-        pass
+        struct_def = '<{0}'.format(item.struct_type)
+        struct.pack_into(struct_def, self.data, item.pos, item.value)
+
+    def write_all_items(self, items):
+        for section, section_items in items.items():
+            for item in section_items:
+                self.write_item(item)
