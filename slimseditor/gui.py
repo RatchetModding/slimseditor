@@ -26,6 +26,7 @@ def render_menu_bar():
 
         if bimpy.begin_menu('Open'):
             bimpy.menu_item("PS2 .bin file", '', click_states['open_ps2_bin'])
+            bimpy.menu_item("PS2 memory card (.ps2)", '', click_states['open_ps2_mc'])
 
             bimpy.end_menu()
 
@@ -51,6 +52,13 @@ def process_menu_bar_events():
             open_savegame(PS2BinBackend, path)
 
         click_states['open_ps2_bin'].value = False
+
+    if click_states['open_ps2_mc'].value:
+        path = crossfiledialog.open_file()
+        if path:
+            open_frames.append(PS2MCFrame(path))
+
+        click_states['open_ps2_mc'].value = False
 
 
 def process_envvars():
