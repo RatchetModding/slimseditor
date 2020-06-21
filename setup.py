@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 
-from distutils.core import setup
+from setuptools import setup
+from distutils.extension import Extension
 
+
+slimscbindings = Extension(
+    'slimscbindings',
+    sources=['slimscbindings.c'],
+)
 
 setup(
     name='slimseditor',
@@ -11,4 +17,5 @@ setup(
     author_email='maikelwever@gmail.com',
     url='https://github.com/maikelwever/slimseditor/',
     packages=['slimseditor'],
+    ext_modules=[slimscbindings],
 )

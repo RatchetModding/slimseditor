@@ -1,22 +1,22 @@
 from slimseditor.reloadmagic import autoreload
-from slimseditor.saveentry import RangedShort, Boolean, Integer
+from slimseditor.saveentry import RangedInteger, Boolean, Integer
 
 
 @autoreload
 def get_rac_items():
     return {
         "Weapon Ammo": [
-            RangedShort("Bomb Glove", 0x147, 40),
-            RangedShort("Blaster", 0x15b, 200),
-            RangedShort("Visibomb", 0x153, 20),
-            RangedShort("Devastator", 0x14b, 20),
-            RangedShort("Gold Glove of Doom", 0x16f, 10),
-            RangedShort("R.Y.N.O.", 0x17b, 50),
-            RangedShort("Drone", 0x17f, 10),
-            RangedShort("Pyrociter", 0x15f, 240),
-            RangedShort("Mine Glove", 0x163, 50),
-            RangedShort("Tesla Claw", 0x16b, 240),
-            RangedShort("Decoy Glove", 0x183, 20),
+            RangedInteger("Bomb Glove", 0x144, 40),
+            RangedInteger("Blaster", 0x158, 200),
+            RangedInteger("Visibomb", 0x150, 20),
+            RangedInteger("Devastator", 0x148, 20),
+            RangedInteger("Gold Glove of Doom", 0x16c, 10),
+            RangedInteger("R.Y.N.O.", 0x178, 50),
+            RangedInteger("Drone", 0x17c, 10),
+            RangedInteger("Pyrociter", 0x15c, 240),
+            RangedInteger("Mine Glove", 0x160, 50),
+            RangedInteger("Tesla Claw", 0x168, 240),
+            RangedInteger("Decoy Glove", 0x180, 20),
         ],
         "Weapon Unlocks": [
             Boolean("Bomb Glove", 0x1c2),

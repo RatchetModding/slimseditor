@@ -26,13 +26,13 @@ class AbstractSaveEntry:
         pass
 
 
-class RangedShort(AbstractSaveEntry):
-    struct_type = 'H'
+class RangedInteger(AbstractSaveEntry):
+    struct_type = 'i'
     python_type = int
     bimpy_type = bimpy.Int
 
     def __init__(self, name, pos, max=100, min=0):
-        super(RangedShort, self).__init__(name, pos)
+        super(RangedInteger, self).__init__(name, pos)
         self.min = min
         self.max = max
 

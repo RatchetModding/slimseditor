@@ -1,12 +1,15 @@
 import os
 import struct
 
+import slimscbindings
+
 from slimseditor.game import Game
 from slimseditor.reloadmagic import autoreload
 
 
 class AbstractBackend:
     def __init__(self, path):
+        self.data = bytearray()
         self.path = path
         self.game = Game.ERROR
 
@@ -46,12 +49,9 @@ PS2_GAME_IDS = {
 }
 
 
-@autoreload
 class PS2BinBackend(AbstractBackend):
     def __init__(self, path):
-        self.data = b''
-        self.path = path
-        self.game = Game.ERROR
+        super(PS2BinBackend, self).__init__(path)
         self.detect_game()
         self.read_data()
 
@@ -60,8 +60,14 @@ class PS2BinBackend(AbstractBackend):
             self.data = bytearray(f.read())
 
     def write_data(self):
+        self.calculate_checksum()
+
         with open(self.path, 'wb') as f:
             f.write(self.data)
+
+    def calculate_checksum(self):
+        result = slimscbindings.calculate_checksum(self.data)
+        self.data = result
 
     def detect_game(self):
         dirname = os.path.basename(os.path.dirname(self.path))
@@ -83,6 +89,28 @@ class PS2BinBackend(AbstractBackend):
         for section, section_items in items.items():
             for item in section_items:
                 self.write_item(item)
+
+
+class PS2WrappedBinBackend(PS2BinBackend):
+    def __init__(self, path, wrapper):
+        self.wrapper = wrapper
+        self.name = '{0} in {1}'.format(path, wrapper.name)
+        super(PS2WrappedBinBackend, self).__init__(path)
+
+    def get_friendly_name(self):
+        return self.name
+
+    def read_data(self):
+        card_file = self.wrapper.card.open(self.path, 'rb')
+        self.data = bytearray(card_file.read())
+        card_file.close()
+
+    def write_data(self):
+        self.calculate_checksum()
+        card_file = self.wrapper.card.open(self.path, 'wb')
+        card_file.write(self.data)
+        card_file.close()
+        self.wrapper.write_card_data()
 
 
 PS3_GAME_IDS = {
@@ -124,9 +152,7 @@ USR_DATA_GAMES = [Game.RAC, Game.GC, Game.UYA, Game.DL]
 @autoreload
 class PS3Backend(AbstractBackend):
     def __init__(self, path):
-        self.data = b''
-        self.path = path
-        self.game = Game.ERROR
+        super(PS3Backend, self).__init__(path)
         self.encrypted = os.path.exists(os.path.join(path, 'PARAM.PFD'))
         self.detect_game()
         self.read_data()
