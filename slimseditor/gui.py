@@ -4,7 +4,7 @@ import sys
 from collections import defaultdict
 
 import bimpy
-import filedialog
+import crossfiledialog
 
 from slimseditor.backends import PS2BinBackend, PS3Backend
 from slimseditor.reloadmagic import autoreload
@@ -36,7 +36,7 @@ def render_menu_bar():
 @autoreload
 def process_menu_bar_events():
     if click_states['open_ps2_bin'].value:
-        path = filedialog.open_file()
+        path = crossfiledialog.open_file()
         if path:
             try:
                 new_savegame = SaveGame(path, PS2BinBackend)

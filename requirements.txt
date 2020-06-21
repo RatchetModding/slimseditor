@@ -1,4 +1,4 @@
--e git+https://github.com/maikelwever/filedialog@master#egg=filedialog
+crossfiledialog
 bimpy==0.0.13
 pycryptodome==3.9.7
 
