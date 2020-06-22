@@ -1,6 +1,7 @@
 import json
 import os
 import pkgutil
+import sys
 
 from enum import Enum
 
@@ -12,6 +13,11 @@ ITEM_CLASSES = {
     'Integer': Integer,
     'Boolean': Boolean,
 }
+
+if getattr(sys, 'frozen', False):
+    APP_PATH = sys._MEIPASS
+else:
+    APP_PATH = os.path.dirname(os.path.abspath(__file__))
 
 
 class Game(Enum):
@@ -31,8 +37,9 @@ class Game(Enum):
 
 def get_game_file(game: Game):
     game_filename = '{0}.json'.format(str(game.name).lower())
-    if os.path.exists('game') and os.path.isdir('game'):
-        possible_filename = os.path.join('game', game_filename)
+    possible_game_folder = os.path.join(APP_PATH, 'game')
+    if os.path.exists(possible_game_folder) and os.path.isdir(possible_game_folder):
+        possible_filename = os.path.join(possible_game_folder, game_filename)
         if os.path.exists(possible_filename):
             with open(possible_filename, 'r') as f:
                 return f.read()
