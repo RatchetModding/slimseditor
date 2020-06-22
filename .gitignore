@@ -179,3 +179,5 @@ tags
 .vscode
 .venv
 imgui.ini
+
+/game/*.json

@@ -69,3 +69,20 @@ env/bin/pip install -r requirements.txt
 env/bin/python setup.py develop
 env/bin/python -m slimseditor
 ```
+
+
+Adding savegame items
+---------------------
+
+Savegame item positions are defined by `.json` files in `slimseditor/game`.
+For prebuilt editions, these files are bundled with the application data.
+
+To submit new items, or change existing item definitions, 
+simply edit the appropriate lines in the `.json` files.
+The editor will re-read the `.json` files every time you open a savegame or click a `refresh` button.
+
+If you are working with a prebuilt edition, 
+you can create a folder called `game` in the directory `slimseditor.exe` is in.
+The editor will then search for game files in this directory instead.
+To get started with this, download the `.json` file for the game you're editing from GitHub,
+and put it in your new `game` folder. 

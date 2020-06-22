@@ -1,13 +1,17 @@
+import json
+import os
+import pkgutil
+
 from enum import Enum
 
-from slimseditor.game.acit import get_acit_items
-from slimseditor.game.dl import get_dl_items
-from slimseditor.game.gc import get_gc_items
-from slimseditor.game.nexus import get_nexus_items
-from slimseditor.game.qfb import get_qfb_items
-from slimseditor.game.rac import get_rac_items
-from slimseditor.game.tod import get_tod_items
-from slimseditor.game.uya import get_uya_items
+from slimseditor.saveentry import RangedInteger, Integer, Boolean
+
+
+ITEM_CLASSES = {
+    'RangedInteger': RangedInteger,
+    'Integer': Integer,
+    'Boolean': Boolean,
+}
 
 
 class Game(Enum):
@@ -22,12 +26,31 @@ class Game(Enum):
     NEXUS = "Ratchet and Clank : Into the Nexus"
 
     def get_items(self):
-        if self == Game.RAC: return get_rac_items()
-        if self == Game.GC: return get_gc_items()
-        if self == Game.UYA: return get_uya_items()
-        if self == Game.DL: return get_dl_items()
-        if self == Game.TOD: return get_tod_items()
-        if self == Game.QFB: return get_qfb_items()
-        if self == Game.ACIT: return get_acit_items()
-        if self == Game.NEXUS: return get_nexus_items()
-        return dict()
+        return get_game_items(self)
+
+
+def get_game_file(game: Game):
+    game_filename = '{0}.json'.format(str(game.name).lower())
+    if os.path.exists('game') and os.path.isdir('game'):
+        possible_filename = os.path.join('game', game_filename)
+        if os.path.exists(possible_filename):
+            with open(possible_filename, 'r') as f:
+                return f.read()
+
+    return pkgutil.get_data('slimseditor.game', game_filename).decode('utf-8')
+
+
+def get_game_items(game: Game):
+    json_data = get_game_file(game)
+    parsed_data = json.loads(json_data)
+    items = dict()
+    for key, value in parsed_data.items():
+        item_list = []
+        for item in value:
+            copied_item = item
+            item_type = copied_item.pop('type')
+            item_list.append(ITEM_CLASSES[item_type](**copied_item))
+
+        items[key] = item_list
+
+    return items

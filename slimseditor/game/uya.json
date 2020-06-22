@@ -1,0 +1,369 @@
+{
+    "Bolt counts": [
+        {
+            "name": "Number of Bolts",
+            "pos": 36,
+            "type": "Integer"
+        }
+    ],
+    "Item Unlocks": [
+        {
+            "name": "Heli Pack",
+            "pos": 1194,
+            "type": "Boolean"
+        },
+        {
+            "name": "Thruster Pack",
+            "pos": 1195,
+            "type": "Boolean"
+        },
+        {
+            "name": "Hydro Pack",
+            "pos": 1196,
+            "type": "Boolean"
+        },
+        {
+            "name": "Map-o-matic",
+            "pos": 1197,
+            "type": "Boolean"
+        },
+        {
+            "name": "Commando Suit",
+            "pos": 1198,
+            "type": "Boolean"
+        },
+        {
+            "name": "Bolt Grabber v2",
+            "pos": 1199,
+            "type": "Boolean"
+        },
+        {
+            "name": "Levitator",
+            "pos": 1200,
+            "type": "Boolean"
+        },
+        {
+            "name": "Omniwrench",
+            "pos": 1201,
+            "type": "Boolean"
+        },
+        {
+            "name": "Hypershot",
+            "pos": 1203,
+            "type": "Boolean"
+        },
+        {
+            "name": "Gravity Boots",
+            "pos": 1205,
+            "type": "Boolean"
+        },
+        {
+            "name": "Plasma Coil",
+            "pos": 1208,
+            "type": "Boolean"
+        },
+        {
+            "name": "Lava Gun",
+            "pos": 1209,
+            "type": "Boolean"
+        },
+        {
+            "name": "Refractor",
+            "pos": 1210,
+            "type": "Boolean"
+        },
+        {
+            "name": "Bouncer",
+            "pos": 1211,
+            "type": "Boolean"
+        },
+        {
+            "name": "The Hacker",
+            "pos": 1212,
+            "type": "Boolean"
+        },
+        {
+            "name": "Miniturret",
+            "pos": 1213,
+            "type": "Boolean"
+        },
+        {
+            "name": "Shield Charger",
+            "pos": 1214,
+            "type": "Boolean"
+        },
+        {
+            "name": "Charge Boots",
+            "pos": 1221,
+            "type": "Boolean"
+        },
+        {
+            "name": "Thyrra Guise",
+            "pos": 1222,
+            "type": "Boolean"
+        },
+        {
+            "name": "Warp Pad",
+            "pos": 1223,
+            "type": "Boolean"
+        },
+        {
+            "name": "Nano Pak",
+            "pos": 1224,
+            "type": "Boolean"
+        },
+        {
+            "name": "Star Map",
+            "pos": 1226,
+            "type": "Boolean"
+        },
+        {
+            "name": "Master Plan",
+            "pos": 1227,
+            "type": "Boolean"
+        },
+        {
+            "name": "PDA",
+            "pos": 1228,
+            "type": "Boolean"
+        },
+        {
+            "name": "Third Person Mode",
+            "pos": 1228,
+            "type": "Boolean"
+        },
+        {
+            "name": "First Person Mode",
+            "pos": 1229,
+            "type": "Boolean"
+        },
+        {
+            "name": "Lock-Strafe Mode",
+            "pos": 1230,
+            "type": "Boolean"
+        }
+    ],
+    "Misc": [
+        {
+            "name": "Enable Quick Select Pause",
+            "pos": 11302,
+            "type": "Boolean"
+        }
+    ],
+    "Weapon Ammo": [
+        {
+            "name": "Shock Blaster",
+            "pos": 716,
+            "type": "Integer"
+        },
+        {
+            "name": "N60 Storm",
+            "pos": 748,
+            "type": "Integer"
+        },
+        {
+            "name": "Infector",
+            "pos": 780,
+            "type": "Integer"
+        },
+        {
+            "name": "Annihilator",
+            "pos": 812,
+            "type": "Integer"
+        },
+        {
+            "name": "Spitting Hydra",
+            "pos": 844,
+            "type": "Integer"
+        },
+        {
+            "name": "Disc Blade Gun",
+            "pos": 876,
+            "type": "Integer"
+        },
+        {
+            "name": "Agents of Doom",
+            "pos": 908,
+            "type": "Integer"
+        },
+        {
+            "name": "Rift Inducer",
+            "pos": 940,
+            "type": "Integer"
+        },
+        {
+            "name": "Holoshield",
+            "pos": 972,
+            "type": "Integer"
+        },
+        {
+            "name": "Flux Rifle",
+            "pos": 1004,
+            "type": "Integer"
+        },
+        {
+            "name": "Nitro Launcher",
+            "pos": 1036,
+            "type": "Integer"
+        },
+        {
+            "name": "Plasma Whip",
+            "pos": 1068,
+            "type": "Integer"
+        },
+        {
+            "name": "Quack-O-Ray",
+            "pos": 1132,
+            "type": "Integer"
+        },
+        {
+            "name": "R3YNO",
+            "pos": 1164,
+            "type": "Integer"
+        }
+    ],
+    "Weapon EXP": [
+        {
+            "name": "Shock Blaster",
+            "pos": 1676,
+            "type": "Integer"
+        },
+        {
+            "name": "N60 Storm",
+            "pos": 1708,
+            "type": "Integer"
+        },
+        {
+            "name": "Infector",
+            "pos": 1740,
+            "type": "Integer"
+        },
+        {
+            "name": "Annihilator",
+            "pos": 1772,
+            "type": "Integer"
+        },
+        {
+            "name": "Spitting Hydra",
+            "pos": 1804,
+            "type": "Integer"
+        },
+        {
+            "name": "Disc Blade Gun",
+            "pos": 1836,
+            "type": "Integer"
+        },
+        {
+            "name": "Agents of Doom",
+            "pos": 1868,
+            "type": "Integer"
+        },
+        {
+            "name": "Rift Inducer",
+            "pos": 1900,
+            "type": "Integer"
+        },
+        {
+            "name": "Holoshield",
+            "pos": 1932,
+            "type": "Integer"
+        },
+        {
+            "name": "Flux Rifle",
+            "pos": 1964,
+            "type": "Integer"
+        },
+        {
+            "name": "Nitro Launcher",
+            "pos": 1996,
+            "type": "Integer"
+        },
+        {
+            "name": "Plasma Whip",
+            "pos": 2028,
+            "type": "Integer"
+        },
+        {
+            "name": "Quack-O-Ray",
+            "pos": 2060,
+            "type": "Integer"
+        },
+        {
+            "name": "R3YNO",
+            "pos": 2124,
+            "type": "Integer"
+        }
+    ],
+    "Weapon Unlocks": [
+        {
+            "name": "Shock Blaster V1",
+            "pos": 1231,
+            "type": "Boolean"
+        },
+        {
+            "name": "N60 Storm V1",
+            "pos": 1239,
+            "type": "Boolean"
+        },
+        {
+            "name": "Infector V1",
+            "pos": 1247,
+            "type": "Boolean"
+        },
+        {
+            "name": "Annihilator V1",
+            "pos": 1255,
+            "type": "Boolean"
+        },
+        {
+            "name": "Spitting Hydra V1",
+            "pos": 1263,
+            "type": "Boolean"
+        },
+        {
+            "name": "Disc Blade Gun V1",
+            "pos": 1271,
+            "type": "Boolean"
+        },
+        {
+            "name": "Agents of Doom V1",
+            "pos": 1279,
+            "type": "Boolean"
+        },
+        {
+            "name": "Rift Inducer V1",
+            "pos": 1287,
+            "type": "Boolean"
+        },
+        {
+            "name": "Holoshield V1",
+            "pos": 1295,
+            "type": "Boolean"
+        },
+        {
+            "name": "Flux Rifle V1",
+            "pos": 1303,
+            "type": "Boolean"
+        },
+        {
+            "name": "Nitro Launcher V1",
+            "pos": 1311,
+            "type": "Boolean"
+        },
+        {
+            "name": "Plasma Whip V1",
+            "pos": 1319,
+            "type": "Boolean"
+        },
+        {
+            "name": "Quack-O-Ray V1",
+            "pos": 1327,
+            "type": "Boolean"
+        },
+        {
+            "name": "R3YNO V1",
+            "pos": 1343,
+            "type": "Boolean"
+        }
+    ]
+}

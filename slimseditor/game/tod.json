@@ -1,0 +1,14 @@
+{
+    "Bolt counts": [
+        {
+            "name": "Number of Bolts",
+            "pos": 1052,
+            "type": "Integer"
+        },
+        {
+            "name": "Number of Raritanium",
+            "pos": 1056,
+            "type": "Integer"
+        }
+    ]
+}

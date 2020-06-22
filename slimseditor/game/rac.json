@@ -1,0 +1,295 @@
+{
+    "Bolt counts": [
+        {
+            "name": "Number of Bolts",
+            "pos": 36,
+            "type": "Integer"
+        },
+        {
+            "name": "Total Bolts Collected",
+            "pos": 72,
+            "type": "Integer"
+        }
+    ],
+    "Gadget unlocks": [
+        {
+            "name": "Trespasser",
+            "pos": 466,
+            "type": "Boolean"
+        },
+        {
+            "name": "Hydrodisplacer",
+            "pos": 462,
+            "type": "Boolean"
+        },
+        {
+            "name": "Swingshot",
+            "pos": 452,
+            "type": "Boolean"
+        },
+        {
+            "name": "Gadgetron PDA",
+            "pos": 472,
+            "type": "Boolean"
+        },
+        {
+            "name": "Metal Detector",
+            "pos": 467,
+            "type": "Boolean"
+        },
+        {
+            "name": "Hologuise",
+            "pos": 471,
+            "type": "Boolean"
+        },
+        {
+            "name": "Heli-Pack",
+            "pos": 442,
+            "type": "Boolean"
+        },
+        {
+            "name": "Thruster-Pack",
+            "pos": 443,
+            "type": "Boolean"
+        },
+        {
+            "name": "Hydro-Pack",
+            "pos": 444,
+            "type": "Boolean"
+        },
+        {
+            "name": "O2 Mask",
+            "pos": 446,
+            "type": "Boolean"
+        },
+        {
+            "name": "Sonic Summoner",
+            "pos": 445,
+            "type": "Boolean"
+        },
+        {
+            "name": "Pilot's Helmet",
+            "pos": 447,
+            "type": "Boolean"
+        },
+        {
+            "name": "Grindboots",
+            "pos": 469,
+            "type": "Boolean"
+        },
+        {
+            "name": "Magneboots",
+            "pos": 468,
+            "type": "Boolean"
+        }
+    ],
+    "Item unlocks": [
+        {
+            "name": "Hoverboard",
+            "pos": 470,
+            "type": "Boolean"
+        },
+        {
+            "name": "Persuader",
+            "pos": 475,
+            "type": "Boolean"
+        },
+        {
+            "name": "Bolt Grabber",
+            "pos": 474,
+            "type": "Boolean"
+        },
+        {
+            "name": "Map-o-matic",
+            "pos": 473,
+            "type": "Boolean"
+        }
+    ],
+    "Quick Select": [
+        {
+            "name": "Slot 1",
+            "pos": 556,
+            "type": "Integer"
+        },
+        {
+            "name": "Slot 2",
+            "pos": 560,
+            "type": "Integer"
+        },
+        {
+            "name": "Slot 3",
+            "pos": 564,
+            "type": "Integer"
+        },
+        {
+            "name": "Slot 4",
+            "pos": 568,
+            "type": "Integer"
+        },
+        {
+            "name": "Slot 5",
+            "pos": 572,
+            "type": "Integer"
+        },
+        {
+            "name": "Slot 6",
+            "pos": 576,
+            "type": "Integer"
+        },
+        {
+            "name": "Slot 7",
+            "pos": 580,
+            "type": "Integer"
+        },
+        {
+            "name": "Slot 8",
+            "pos": 584,
+            "type": "Integer"
+        }
+    ],
+    "Weapon Ammo": [
+        {
+            "name": "Bomb Glove",
+            "max": 40,
+            "pos": 324,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Blaster",
+            "max": 200,
+            "pos": 344,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Visibomb",
+            "max": 20,
+            "pos": 336,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Devastator",
+            "max": 20,
+            "pos": 328,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Gold Glove of Doom",
+            "max": 10,
+            "pos": 364,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "R.Y.N.O.",
+            "max": 50,
+            "pos": 376,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Drone",
+            "max": 10,
+            "pos": 380,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Pyrociter",
+            "max": 240,
+            "pos": 348,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Mine Glove",
+            "max": 50,
+            "pos": 352,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Tesla Claw",
+            "max": 240,
+            "pos": 360,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Decoy Glove",
+            "max": 20,
+            "pos": 384,
+            "type": "RangedInteger"
+        }
+    ],
+    "Weapon Unlocks": [
+        {
+            "name": "Bomb Glove",
+            "pos": 450,
+            "type": "Boolean"
+        },
+        {
+            "name": "Pyrocitor",
+            "pos": 456,
+            "type": "Boolean"
+        },
+        {
+            "name": "Blaster",
+            "pos": 455,
+            "type": "Boolean"
+        },
+        {
+            "name": "Glove of Doom",
+            "pos": 460,
+            "type": "Boolean"
+        },
+        {
+            "name": "Mine Glove",
+            "pos": 457,
+            "type": "Boolean"
+        },
+        {
+            "name": "Taunter",
+            "pos": 454,
+            "type": "Boolean"
+        },
+        {
+            "name": "Suck Cannon",
+            "pos": 449,
+            "type": "Boolean"
+        },
+        {
+            "name": "Devastator",
+            "pos": 451,
+            "type": "Boolean"
+        },
+        {
+            "name": "Walloper",
+            "pos": 458,
+            "type": "Boolean"
+        },
+        {
+            "name": "Visibomb Gun",
+            "pos": 453,
+            "type": "Boolean"
+        },
+        {
+            "name": "Decoy Glove",
+            "pos": 465,
+            "type": "Boolean"
+        },
+        {
+            "name": "Drone Device",
+            "pos": 464,
+            "type": "Boolean"
+        },
+        {
+            "name": "Tesla Claw",
+            "pos": 459,
+            "type": "Boolean"
+        },
+        {
+            "name": "Morph-o-ray",
+            "pos": 461,
+            "type": "Boolean"
+        },
+        {
+            "name": "R.Y.N.O.",
+            "pos": 463,
+            "type": "Boolean"
+        }
+    ]
+}

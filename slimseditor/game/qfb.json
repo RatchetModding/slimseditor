@@ -1,0 +1,9 @@
+{
+    "Bolt counts": [
+        {
+            "name": "Number of Bolts",
+            "pos": 583,
+            "type": "Integer"
+        }
+    ]
+}

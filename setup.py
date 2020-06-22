@@ -18,4 +18,5 @@ setup(
     url='https://github.com/maikelwever/slimseditor/',
     packages=['slimseditor'],
     ext_modules=[slimscbindings],
+    include_package_data=True,
 )
