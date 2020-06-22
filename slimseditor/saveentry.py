@@ -6,7 +6,7 @@ class AbstractSaveEntry:
     python_type = int
     bimpy_type = bimpy.Int
 
-    def __init__(self, name, pos):
+    def __init__(self, name='', pos=0):
         self.name = name
         self.pos = pos
         self.bimpy_name = '{0}##{1}'.format(name, pos)
@@ -31,8 +31,8 @@ class RangedInteger(AbstractSaveEntry):
     python_type = int
     bimpy_type = bimpy.Int
 
-    def __init__(self, name, pos, max=100, min=0):
-        super(RangedInteger, self).__init__(name, pos)
+    def __init__(self, name='', pos=0, max=100, min=0):
+        super(RangedInteger, self).__init__(name=name, pos=pos)
         self.min = min
         self.max = max
 

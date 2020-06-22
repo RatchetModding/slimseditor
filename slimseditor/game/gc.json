@@ -1,0 +1,361 @@
+{
+    "Bolt counts": [
+        {
+            "name": "Number of Bolts",
+            "pos": 36,
+            "type": "Integer"
+        },
+        {
+            "name": "Number of Raritanium",
+            "pos": 40,
+            "type": "Integer"
+        },
+        {
+            "name": "Total Bolts Collected",
+            "pos": 72,
+            "type": "Integer"
+        }
+    ],
+    "Item Unlocks": [
+        {
+            "name": "Heli-Pack",
+            "pos": 658,
+            "type": "Boolean"
+        },
+        {
+            "name": "Thruster-Pack",
+            "pos": 659,
+            "type": "Boolean"
+        },
+        {
+            "name": "Hydro-Pack",
+            "pos": 660,
+            "type": "Boolean"
+        },
+        {
+            "name": "Mapper",
+            "pos": 661,
+            "type": "Boolean"
+        },
+        {
+            "name": "Levitator",
+            "pos": 664,
+            "type": "Boolean"
+        },
+        {
+            "name": "Swingshot",
+            "pos": 669,
+            "type": "Boolean"
+        },
+        {
+            "name": "Gravity Boots",
+            "pos": 675,
+            "type": "Boolean"
+        },
+        {
+            "name": "Grindboots",
+            "pos": 676,
+            "type": "Boolean"
+        },
+        {
+            "name": "Glider",
+            "pos": 677,
+            "type": "Boolean"
+        },
+        {
+            "name": "Dynamo",
+            "pos": 692,
+            "type": "Boolean"
+        },
+        {
+            "name": "Electrolyzer",
+            "pos": 694,
+            "type": "Boolean"
+        },
+        {
+            "name": "Thermanator",
+            "pos": 695,
+            "type": "Boolean"
+        },
+        {
+            "name": "Tractor Beam",
+            "pos": 702,
+            "type": "Boolean"
+        },
+        {
+            "name": "Biker Helmet",
+            "pos": 704,
+            "type": "Boolean"
+        },
+        {
+            "name": "Quark Statuette",
+            "pos": 705,
+            "type": "Boolean"
+        },
+        {
+            "name": "Box Breaker",
+            "pos": 706,
+            "type": "Boolean"
+        },
+        {
+            "name": "Infiltrator",
+            "pos": 708,
+            "type": "Boolean"
+        },
+        {
+            "name": "Charge Boots",
+            "pos": 710,
+            "type": "Boolean"
+        },
+        {
+            "name": "Hypnomatic",
+            "pos": 711,
+            "type": "Boolean"
+        }
+    ],
+    "Weapon Ammo": [
+        {
+            "name": "Clank Zapper",
+            "max": 30,
+            "pos": 456,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Bomb Glove",
+            "max": 40,
+            "pos": 456,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Visibomb Gun",
+            "max": 20,
+            "pos": 472,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Decoy Glove",
+            "max": 20,
+            "pos": 488,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Tesla Claw",
+            "max": 300,
+            "pos": 496,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Chopper",
+            "max": 35,
+            "pos": 512,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Pulse Rifle",
+            "max": 8,
+            "pos": 516,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Seeker Gun",
+            "max": 25,
+            "pos": 520,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Hoverbomb Gun",
+            "max": 10,
+            "pos": 524,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Blitz Gun",
+            "max": 40,
+            "pos": 528,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Minirocket Tube",
+            "max": 25,
+            "pos": 532,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Plasma Coil",
+            "max": 15,
+            "pos": 536,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Lava Gun",
+            "max": 200,
+            "pos": 540,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Lancer",
+            "max": 200,
+            "pos": 544,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Synthenoid",
+            "max": 12,
+            "pos": 548,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Spiderbot Glove",
+            "max": 8,
+            "pos": 552,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Bouncer",
+            "max": 25,
+            "pos": 572,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Miniturret Glove",
+            "max": 20,
+            "pos": 588,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Zodiac",
+            "max": 4,
+            "pos": 596,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "RYNO II",
+            "max": 100,
+            "pos": 600,
+            "type": "RangedInteger"
+        },
+        {
+            "name": "Shield Charger",
+            "max": 5,
+            "pos": 604,
+            "type": "RangedInteger"
+        }
+    ],
+    "Weapon Unlocks": [
+        {
+            "name": "Clank Zapper",
+            "pos": 665,
+            "type": "Boolean"
+        },
+        {
+            "name": "Bomb Glove",
+            "pos": 668,
+            "type": "Boolean"
+        },
+        {
+            "name": "Visibomb Gun",
+            "pos": 670,
+            "type": "Boolean"
+        },
+        {
+            "name": "Sheepinator",
+            "pos": 672,
+            "type": "Boolean"
+        },
+        {
+            "name": "Decoy Glove",
+            "pos": 673,
+            "type": "Boolean"
+        },
+        {
+            "name": "Tesla Claw",
+            "pos": 674,
+            "type": "Boolean"
+        },
+        {
+            "name": "Chopper",
+            "pos": 677,
+            "type": "Boolean"
+        },
+        {
+            "name": "Pulse Rifle",
+            "pos": 679,
+            "type": "Boolean"
+        },
+        {
+            "name": "Seeker Gun",
+            "pos": 680,
+            "type": "Boolean"
+        },
+        {
+            "name": "Hoverbomb Gun",
+            "pos": 681,
+            "type": "Boolean"
+        },
+        {
+            "name": "Blitz Gun",
+            "pos": 682,
+            "type": "Boolean"
+        },
+        {
+            "name": "Minirocket Tube",
+            "pos": 683,
+            "type": "Boolean"
+        },
+        {
+            "name": "Plasma Coil",
+            "pos": 684,
+            "type": "Boolean"
+        },
+        {
+            "name": "Lava Gun",
+            "pos": 685,
+            "type": "Boolean"
+        },
+        {
+            "name": "Lancer",
+            "pos": 686,
+            "type": "Boolean"
+        },
+        {
+            "name": "Synthenoid",
+            "pos": 687,
+            "type": "Boolean"
+        },
+        {
+            "name": "Spiderbot Glove",
+            "pos": 688,
+            "type": "Boolean"
+        },
+        {
+            "name": "Bouncer",
+            "pos": 693,
+            "type": "Boolean"
+        },
+        {
+            "name": "Miniturret Glove",
+            "pos": 697,
+            "type": "Boolean"
+        },
+        {
+            "name": "Zodiac",
+            "pos": 699,
+            "type": "Boolean"
+        },
+        {
+            "name": "RYNO II",
+            "pos": 700,
+            "type": "Boolean"
+        },
+        {
+            "name": "Shield Charger",
+            "pos": 701,
+            "type": "Boolean"
+        },
+        {
+            "name": "Walloper",
+            "pos": 709,
+            "type": "Boolean"
+        }
+    ]
+}
