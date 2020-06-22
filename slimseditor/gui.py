@@ -6,7 +6,7 @@ from collections import defaultdict
 import bimpy
 import crossfiledialog
 
-from slimseditor.backends import PS2BinBackend, PS3Backend
+from slimseditor.backends import PS2BinBackend, PS3DecryptedBackend
 from slimseditor.reloadmagic import autoreload
 from slimseditor.frames import FrameBase, SaveGameFrame, PS2MCFrame
 
@@ -27,6 +27,7 @@ def render_menu_bar():
         if bimpy.begin_menu('Open'):
             bimpy.menu_item("PS2 .bin file", '', click_states['open_ps2_bin'])
             bimpy.menu_item("PS2 memory card (.ps2)", '', click_states['open_ps2_mc'])
+            bimpy.menu_item("PS3 decrypted", '', click_states['open_ps3_dec'])
 
             bimpy.end_menu()
 
@@ -34,14 +35,9 @@ def render_menu_bar():
 
 
 def open_savegame(backend, *args, **kwargs):
-    try:
-        new_savegame = SaveGameFrame(backend, *args, **kwargs)
-        open_frames.append(new_savegame)
-        return new_savegame
-    except KeyboardInterrupt as e:
-        raise e
-    except Exception as e:
-        print(e)
+    new_savegame = SaveGameFrame(backend, *args, **kwargs)
+    open_frames.append(new_savegame)
+    return new_savegame
 
 
 @autoreload
@@ -60,6 +56,13 @@ def process_menu_bar_events():
 
         click_states['open_ps2_mc'].value = False
 
+    if click_states['open_ps3_dec'].value:
+        path = crossfiledialog.choose_folder()
+        if path:
+            open_savegame(PS3DecryptedBackend, path)
+
+        click_states['open_ps3_dec'].value = False
+
 
 def process_envvars():
     ps2_bin = os.environ.get('OPEN_PS2BIN', '')
@@ -75,10 +78,10 @@ def process_envvars():
             except KeyboardInterrupt as e:
                 raise e
 
-    ps3_savegames = os.environ.get('OPEN_PS3', '')
+    ps3_savegames = os.environ.get('OPEN_PS3_DEC', '')
     if ps3_savegames:
         for path in ps3_savegames.split(':'):
-            open_savegame(PS3Backend, path)
+            open_savegame(PS3DecryptedBackend, path)
 
 
 def main():

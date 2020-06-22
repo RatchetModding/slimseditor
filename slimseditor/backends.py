@@ -4,7 +4,6 @@ import struct
 import slimscbindings
 
 from slimseditor.game import Game
-from slimseditor.reloadmagic import autoreload
 
 
 class AbstractBackend:
@@ -132,6 +131,9 @@ PS3_GAME_IDS = {
         "BCUS98124", "BCES00142", "BCES00511", "BCES00748",
         "BCES00726", "BCJS30038", "BCKS10087", "BCAS20098",
     ],
+    Game.NEXUS: [
+        "XCES00008", "BCES01908", "BCUS99245", "BCES01949",
+    ],
 }
 
 
@@ -149,22 +151,14 @@ def get_ps3_key(game):
 USR_DATA_GAMES = [Game.RAC, Game.GC, Game.UYA, Game.DL]
 
 
-@autoreload
-class PS3Backend(AbstractBackend):
+class PS3DecryptedBackend(AbstractBackend):
     def __init__(self, path):
-        super(PS3Backend, self).__init__(path)
-        self.encrypted = os.path.exists(os.path.join(path, 'PARAM.PFD'))
+        super(PS3DecryptedBackend, self).__init__(path)
         self.detect_game()
         self.read_data()
 
     def read_data(self):
-        if self.encrypted:
-            pass
-        else:
-            self.read_data_decrypted(self.path)
-
-    def read_data_decrypted(self, path):
-        data_file = os.path.join(path, self.get_filename())
+        data_file = os.path.join(self.path, self.get_filename())
         with open(data_file, 'rb') as f:
             self.data = bytearray(f.read())
 
@@ -201,3 +195,4 @@ class PS3Backend(AbstractBackend):
                 region_sfo = f.read(9).decode('ascii')
 
             self.match_region_to_game(region_sfo)
+

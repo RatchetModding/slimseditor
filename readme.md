@@ -11,6 +11,44 @@ About
 
 A more extended written description will be put here soon (tm).
 
+For unsupported games/formats, please refer to https://github.com/maikelwever/rac-savegame-editor.
+
+
+Supported file formats
+----------------------
+
+Currently supported:
+
+ - Raw PS2 save data (.bin), can be extracted with MyMC+ or uLaunchELF.
+ - PCSX2 Memory Cards (.ps2)
+ - Decrypted PS3 savegame data (RPCS3 or decrypted with BruteForce)
+ 
+ 
+Supported games
+---------------
+
+Currently supported:
+
+ - PS2 and PS3
+   - Ratchet and Clank
+   - Ratchet and Clank 2 : Going Commando
+   - Ratchet and Clank 3 : Up Your Arsenal
+   - Ratchet: Deadlocked / Gladiator
+ - PS3
+   - Ratchet and Clank : Tools of Destruction
+   - Ratchet and Clank : Quest for Booty
+   - Ratchet and Clank : A Crack in Time
+   - Ratchet and Clank : (Into the) Nexus
+   
+   
+Roadmap
+-------
+
+Wishlist of features to port from the previous editor or add new:
+
+ - PS Vita trilogy support
+ - PS3 savegame decryption and proper re-encryption.
+
 
 Installation
 ------------
