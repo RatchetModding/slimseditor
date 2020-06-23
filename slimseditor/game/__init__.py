@@ -17,7 +17,7 @@ ITEM_CLASSES = {
 if getattr(sys, 'frozen', False):
     APP_PATH = sys._MEIPASS
 else:
-    APP_PATH = os.path.dirname(os.path.abspath(__file__))
+    APP_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class Game(Enum):
