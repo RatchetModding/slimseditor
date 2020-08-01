@@ -1,3 +1,14 @@
 {
-    "Bolt counts": []
+    "Bolt counts": [
+        {
+            "name": "Number of Bolts",
+            "pos": 40,
+            "type": "Integer"
+        },
+        {
+            "name": "Health EXP",
+            "pos": 44,
+            "type": "Integer"
+        }
+    ]
 }
