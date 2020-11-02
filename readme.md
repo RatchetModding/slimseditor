@@ -11,8 +11,6 @@ About
 
 A more extended written description will be put here soon (tm).
 
-For unsupported games/formats, please refer to https://github.com/maikelwever/rac-savegame-editor.
-
 
 Supported file formats
 ----------------------
