@@ -195,4 +195,3 @@ class PS3DecryptedBackend(AbstractBackend):
                 region_sfo = f.read(9).decode('ascii')
 
             self.match_region_to_game(region_sfo)
-

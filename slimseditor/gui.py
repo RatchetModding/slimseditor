@@ -7,14 +7,12 @@ import bimpy
 import crossfiledialog
 
 from slimseditor.backends import PS2BinBackend, PS3DecryptedBackend
-from slimseditor.reloadmagic import autoreload
 from slimseditor.frames import FrameBase, SaveGameFrame, PS2MCFrame
 
 click_states = defaultdict(bimpy.Bool)
 open_frames = []  # type: List[FrameBase]
 
 
-@autoreload
 def render_menu_bar():
     if bimpy.begin_main_menu_bar():
         if bimpy.begin_menu('File'):
@@ -40,7 +38,6 @@ def open_savegame(backend, *args, **kwargs):
     return new_savegame
 
 
-@autoreload
 def process_menu_bar_events():
     if click_states['open_ps2_bin'].value:
         path = crossfiledialog.open_file()

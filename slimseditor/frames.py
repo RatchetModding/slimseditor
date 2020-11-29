@@ -7,7 +7,7 @@ import crossfiledialog
 from mymcplus import ps2mc
 
 from slimseditor.backends import AbstractBackend, PS2WrappedBinBackend
-from slimseditor.reloadmagic import autoreload
+
 
 counter = 0
 
@@ -94,7 +94,6 @@ class SaveGameFrame(FrameBase):
             self.click_states['export'].value = False
 
 
-@autoreload
 class PS2MCFrame(FrameBase):
     NAME_EXCLUSIONS = [b'.', b'..']
 
