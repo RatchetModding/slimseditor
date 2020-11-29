@@ -6,7 +6,7 @@ from collections import defaultdict
 import bimpy
 import crossfiledialog
 
-from slimseditor.backends import PS2BinBackend, PS3DecryptedBackend
+from slimseditor.backends import PS2BinBackend, PS3DecryptedBackend, PSVitaDecryptedBackend
 from slimseditor.frames import FrameBase, SaveGameFrame, PS2MCFrame
 
 click_states = defaultdict(bimpy.Bool)
@@ -26,6 +26,7 @@ def render_menu_bar():
             bimpy.menu_item("PS2 .bin file", '', click_states['open_ps2_bin'])
             bimpy.menu_item("PS2 memory card (.ps2)", '', click_states['open_ps2_mc'])
             bimpy.menu_item("PS3 decrypted", '', click_states['open_ps3_dec'])
+            bimpy.menu_item("Vita decrypted", '', click_states['open_vita_dec'])
 
             bimpy.end_menu()
 
@@ -60,6 +61,13 @@ def process_menu_bar_events():
 
         click_states['open_ps3_dec'].value = False
 
+    if click_states['open_vita_dec'].value:
+        path = crossfiledialog.open_file()
+        if path:
+            open_savegame(PSVitaDecryptedBackend, path)
+
+        click_states['open_vita_dec'].value = False
+
 
 def process_envvars():
     ps2_bin = os.environ.get('OPEN_PS2BIN', '')
@@ -79,6 +87,11 @@ def process_envvars():
     if ps3_savegames:
         for path in ps3_savegames.split(':'):
             open_savegame(PS3DecryptedBackend, path)
+
+    vita_savegames = os.environ.get('OPEN_VITA_DEC', '')
+    if vita_savegames:
+        for path in vita_savegames.split(':'):
+            open_savegame(PSVitaDecryptedBackend, path)
 
 
 def main():

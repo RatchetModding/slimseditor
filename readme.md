@@ -20,6 +20,8 @@ Currently supported:
  - Raw PS2 save data (.bin), can be extracted with MyMC+ or uLaunchELF.
  - PCSX2 Memory Cards (.ps2)
  - Decrypted PS3 savegame data (RPCS3 or decrypted with BruteForce)
+ - Decrypted PS Vita savegames from the OG Trilogy. 
+   [Docs for acquiring Vita savegames](https://github.com/maikelwever/rac-savegame-editor/blob/master/docs/HOW-TO-MOVE-SAVES-FOR-VITA.md)
  
  
 Supported games
@@ -44,7 +46,6 @@ Roadmap
 
 Wishlist of features to port from the previous editor or add new:
 
- - PS Vita trilogy support
  - PS3 savegame decryption and proper re-encryption.
 
 

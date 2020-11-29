@@ -30,13 +30,33 @@ class AbstractBackend:
         pass
 
     def write_all_items(self, items):
-        pass
+        for section, section_items in items.items():
+            for item in section_items:
+                self.write_item(item)
 
     def read_item(self, item):
         pass
 
     def write_item(self, item):
         pass
+
+
+class SingleLittleEndianFileMixin:
+    def read_data(self):
+        with open(self.path, 'rb') as f:
+            self.data = bytearray(f.read())
+
+    def write_data(self):
+        with open(self.path, 'wb') as f:
+            f.write(self.data)
+
+    def read_item(self, item):
+        struct_def = '<{0}'.format(item.struct_type)
+        item.value, = struct.unpack_from(struct_def, self.data, item.pos)
+
+    def write_item(self, item):
+        struct_def = '<{0}'.format(item.struct_type)
+        struct.pack_into(struct_def, self.data, item.pos, item.value)
 
 
 PS2_GAME_IDS = {
@@ -48,21 +68,15 @@ PS2_GAME_IDS = {
 }
 
 
-class PS2BinBackend(AbstractBackend):
+class PS2BinBackend(SingleLittleEndianFileMixin, AbstractBackend):
     def __init__(self, path):
         super(PS2BinBackend, self).__init__(path)
         self.detect_game()
         self.read_data()
 
-    def read_data(self):
-        with open(self.path, 'rb') as f:
-            self.data = bytearray(f.read())
-
     def write_data(self):
         self.calculate_checksum()
-
-        with open(self.path, 'wb') as f:
-            f.write(self.data)
+        super(PS2BinBackend, self).write_data()
 
     def calculate_checksum(self):
         result = slimscbindings.calculate_checksum(self.data)
@@ -75,19 +89,6 @@ class PS2BinBackend(AbstractBackend):
             if game_id in game_ids:
                 self.game = game
                 return
-
-    def read_item(self, item):
-        struct_def = '<{0}'.format(item.struct_type)
-        item.value, = struct.unpack_from(struct_def, self.data, item.pos)
-
-    def write_item(self, item):
-        struct_def = '<{0}'.format(item.struct_type)
-        struct.pack_into(struct_def, self.data, item.pos, item.value)
-
-    def write_all_items(self, items):
-        for section, section_items in items.items():
-            for item in section_items:
-                self.write_item(item)
 
 
 class PS2WrappedBinBackend(PS2BinBackend):
@@ -110,6 +111,22 @@ class PS2WrappedBinBackend(PS2BinBackend):
         card_file.write(self.data)
         card_file.close()
         self.wrapper.write_card_data()
+
+
+class PSVitaDecryptedBackend(SingleLittleEndianFileMixin, AbstractBackend):
+    def __init__(self, path):
+        super(PSVitaDecryptedBackend, self).__init__(path)
+        self.detect_game()
+        self.read_data()
+
+    def detect_game(self):
+        filename = os.path.basename(self.path)
+        if filename.startswith("RC1_"):
+            self.game = Game.RAC
+        elif filename.startswith("RC2_"):
+            self.game = Game.GC
+        elif filename.startswith("RC3_"):
+            self.game = Game.UYA
 
 
 PS3_GAME_IDS = {
