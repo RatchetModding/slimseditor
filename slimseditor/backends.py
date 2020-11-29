@@ -183,6 +183,11 @@ class PS3DecryptedBackend(AbstractBackend):
         struct_def = '>{0}'.format(item.struct_type)
         item.value, = struct.unpack_from(struct_def, self.data, item.pos)
 
+    def write_data(self):
+        data_file = os.path.join(self.path, self.get_filename())
+        with open(data_file, 'wb') as f:
+            f.write(self.data)
+
     def write_item(self, item):
         struct_def = '>{0}'.format(item.struct_type)
         struct.pack_into(struct_def, self.data, item.pos, item.value)
