@@ -11,6 +11,6 @@ jobs:
           python-version: '3.8' # Version range or exact version of a Python version to use, using SemVer's version range syntax
           architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
       - run: sudo apt update
-      - run: sudo apt install xserver-xorg-dev
+      - run: sudo apt-get install -qy build-essential mesa-common-dev libxi-dev libxinerama-dev libxrandr-dev libxcursor-dev
       - run: pip install -r requirements.txt
       - run: python test.py
