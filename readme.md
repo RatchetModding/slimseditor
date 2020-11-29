@@ -1,15 +1,12 @@
 Slim's Editor
 =============
 
-A savegame editor for the Ratchet and Clank games, written in Python.
+A savegame editor for the Ratchet and Clank games, written in Python, using Dear ImGUI via Bimpy for the frontend.
 
-Currently under heavy development, **backup** your savegames before loading them into Slim's Editor.
+Slim's Editor allows you to read and change any (known) value of a RaC savegame. 
+This can also include values that are not exposed by the game itself.
 
-
-About
------
-
-A more extended written description will be put here soon (tm).
+**Always backup your savegames before loading them into Slim's Editor.**
 
 
 Supported file formats
@@ -41,16 +38,8 @@ Currently supported:
    - Ratchet and Clank : (Into the) Nexus
    
    
-Roadmap
--------
-
-Wishlist of features to port from the previous editor or add new:
-
- - PS3 savegame decryption and proper re-encryption.
-
-
-Installation
-------------
+Installation / Usage
+--------------------
 
 For Windows, get the prebuilt versions from the Releases tab on GitHub.
 Simply unzip the release, and run `slimseditor.exe`.
@@ -63,7 +52,7 @@ Install `zenity` (or `kdialog` if you are on KDE).
 ```bash
 git clone https://github.com/maikelwever/slimseditor
 cd slimseditor
-python -m venv env
+python3 -m venv env
 env/bin/pip install -r requirements.txt
 env/bin/python setup.py develop
 env/bin/python -m slimseditor
@@ -85,3 +74,17 @@ you can create a folder called `game` in the directory `slimseditor.exe` is in.
 The editor will then search for game files in this directory instead.
 To get started with this, download the `.json` file for the game you're editing from GitHub,
 and put it in your new `game` folder. 
+
+
+Roadmap
+-------
+
+Wishlist of features to port from the previous editor or add new:
+
+ - PS3 savegame decryption and proper re-encryption.
+
+
+Legal stuff
+-----------
+
+This project is licensed under the GNU General Public License v3.0. Please see the LICENSE file for more details.

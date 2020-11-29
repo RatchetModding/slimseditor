@@ -7,10 +7,10 @@ from slimseditor.game import Game
 
 
 class AbstractBackend:
-    def __init__(self, path):
+    def __init__(self, path, game=Game.ERROR):
         self.data = bytearray()
         self.path = path
-        self.game = Game.ERROR
+        self.game = game
 
     def get_friendly_name(self):
         return self.path
@@ -69,8 +69,8 @@ PS2_GAME_IDS = {
 
 
 class PS2BinBackend(SingleLittleEndianFileMixin, AbstractBackend):
-    def __init__(self, path):
-        super(PS2BinBackend, self).__init__(path)
+    def __init__(self, path, game=Game.ERROR):
+        super(PS2BinBackend, self).__init__(path, game=game)
         self.detect_game()
         self.read_data()
 
@@ -92,10 +92,10 @@ class PS2BinBackend(SingleLittleEndianFileMixin, AbstractBackend):
 
 
 class PS2WrappedBinBackend(PS2BinBackend):
-    def __init__(self, path, wrapper):
+    def __init__(self, path, wrapper, game=Game.ERROR):
         self.wrapper = wrapper
         self.name = '{0} in {1}'.format(path, wrapper.name)
-        super(PS2WrappedBinBackend, self).__init__(path)
+        super(PS2WrappedBinBackend, self).__init__(path, game=game)
 
     def get_friendly_name(self):
         return self.name
@@ -114,8 +114,8 @@ class PS2WrappedBinBackend(PS2BinBackend):
 
 
 class PSVitaDecryptedBackend(SingleLittleEndianFileMixin, AbstractBackend):
-    def __init__(self, path):
-        super(PSVitaDecryptedBackend, self).__init__(path)
+    def __init__(self, path, game=Game.ERROR):
+        super(PSVitaDecryptedBackend, self).__init__(path, game=game)
         self.detect_game()
         self.read_data()
 
@@ -169,8 +169,8 @@ USR_DATA_GAMES = [Game.RAC, Game.GC, Game.UYA, Game.DL]
 
 
 class PS3DecryptedBackend(AbstractBackend):
-    def __init__(self, path):
-        super(PS3DecryptedBackend, self).__init__(path)
+    def __init__(self, path, game=Game.ERROR):
+        super(PS3DecryptedBackend, self).__init__(path, game=game)
         self.detect_game()
         self.read_data()
 

@@ -1,0 +1,40 @@
+{
+  "_backend": "PS2BinBackend",
+  "_path": "ps2_rac1_001.bin",
+  "_game": "RAC",
+
+  "Bolt counts": {
+    "Number of Bolts": 33939,
+    "Total Bolts Collected": 385888512
+  },
+  "Gadget unlocks": {
+    "Trespasser": true,
+    "Hydrodisplacer": true,
+    "Swingshot": true,
+    "Gadgetron PDA": true,
+    "Hologuise": true,
+    "O2 Mask": true,
+    "Sonic Summoner": true,
+    "Pilot's Helmet": true,
+    "Grindboots": true,
+    "Magneboots": true
+  },
+  "Item unlocks": {
+    "Hoverboard": true,
+    "Persuader": true,
+    "Bolt Grabber": true,
+    "Map-o-matic": true
+  },
+  "Weapon Ammo": {
+    "Bomb Glove": 40,
+    "Blaster": 199,
+    "Visibomb": 20,
+    "Devastator": 20,
+    "Gold Glove of Doom": 10,
+    "R.Y.N.O.": 45,
+    "Pyrociter": 240,
+    "Mine Glove": 50,
+    "Tesla Claw": 240,
+    "Decoy Glove": 20
+  }
+}
