@@ -29,11 +29,11 @@ Supported games
 
 Currently supported:
 
- - PS2 and PS3
+ - PS2, PS3, PS Vita
    - Ratchet and Clank
    - Ratchet and Clank 2 : Going Commando
    - Ratchet and Clank 3 : Up Your Arsenal
-   - Ratchet: Deadlocked / Gladiator
+   - Ratchet: Deadlocked / Gladiator  (Not on Vita)
  - PS3
    - Ratchet and Clank : Tools of Destruction
    - Ratchet and Clank : Quest for Booty
