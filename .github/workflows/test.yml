@@ -13,4 +13,5 @@ jobs:
       - run: sudo apt update
       - run: sudo apt-get install -qy build-essential mesa-common-dev libxi-dev libxinerama-dev libxrandr-dev libxcursor-dev
       - run: pip install -r requirements.txt
+      - run: python setup.py develop
       - run: python test.py
