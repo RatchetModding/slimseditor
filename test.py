@@ -58,6 +58,8 @@ def main():
     if not ALL_OK:
         print(f'Return with exitcode, because some items failed to compare.')
         sys.exit(1)
+    else:
+        print('All tests OK!')
 
 
 if __name__ == "__main__":
