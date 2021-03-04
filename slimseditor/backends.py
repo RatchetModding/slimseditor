@@ -101,6 +101,7 @@ class PS2WrappedBinBackend(PS2BinBackend):
         return self.name
 
     def read_data(self):
+        self.wrapper.load_card_data()
         card_file = self.wrapper.card.open(self.path, 'rb')
         self.data = bytearray(card_file.read())
         card_file.close()
@@ -165,7 +166,7 @@ def get_ps3_key(game):
         return 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
 
 
-USR_DATA_GAMES = [Game.RAC, Game.GC, Game.UYA, Game.DL]
+HD_REMASTER_GAMES = [Game.RAC, Game.GC, Game.UYA, Game.DL]
 
 
 class PS3DecryptedBackend(AbstractBackend):
@@ -193,7 +194,7 @@ class PS3DecryptedBackend(AbstractBackend):
         struct.pack_into(struct_def, self.data, item.pos, item.value)
 
     def get_filename(self):
-        if self.game in USR_DATA_GAMES:
+        if self.game in HD_REMASTER_GAMES:
             return 'USR-DATA'
         return 'GAME.SAV'
 
