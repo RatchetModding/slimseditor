@@ -6,6 +6,10 @@ import slimscbindings
 from slimseditor.game import Game
 
 
+ChecksumStructLE = struct.Struct('<II')
+ChecksumStructBE = struct.Struct('>II')
+
+
 class AbstractBackend:
     def __init__(self, path, game=Game.ERROR):
         self.data = bytearray()
@@ -29,6 +33,9 @@ class AbstractBackend:
     def write_data(self):
         pass
 
+    def strip_checksums(self):
+        pass
+
     def write_all_items(self, items):
         for section, section_items in items.items():
             for item in section_items:
@@ -45,6 +52,15 @@ class SingleLittleEndianFileMixin:
     def read_data(self):
         with open(self.path, 'rb') as f:
             self.data = bytearray(f.read())
+
+        self.strip_checksums()
+
+    def strip_checksums(self):
+        pos = 0x08
+        while pos < len(self.data):
+            bytecount, checksum = ChecksumStructLE.unpack_from(self.data, pos)
+            ChecksumStructLE.pack_into(self.data, pos, bytecount, 0xFFFFFFFF)
+            pos = pos + 8 + bytecount
 
     def write_data(self):
         with open(self.path, 'wb') as f:
@@ -105,6 +121,7 @@ class PS2WrappedBinBackend(PS2BinBackend):
         card_file = self.wrapper.card.open(self.path, 'rb')
         self.data = bytearray(card_file.read())
         card_file.close()
+        self.strip_checksums()
 
     def write_data(self):
         self.calculate_checksum()
@@ -179,6 +196,7 @@ class PS3DecryptedBackend(AbstractBackend):
         data_file = os.path.join(self.path, self.get_filename())
         with open(data_file, 'rb') as f:
             self.data = bytearray(f.read())
+        self.strip_checksums()
 
     def read_item(self, item):
         struct_def = '>{0}'.format(item.struct_type)
@@ -218,3 +236,14 @@ class PS3DecryptedBackend(AbstractBackend):
                 region_sfo = f.read(9).decode('ascii')
 
             self.match_region_to_game(region_sfo)
+
+    def strip_checksums(self):
+        if self.game not in HD_REMASTER_GAMES:
+            return
+
+        pos = 0x08
+        while pos < len(self.data):
+            bytecount, checksum = ChecksumStructBE.unpack_from(self.data, pos)
+            ChecksumStructBE.pack_into(self.data, pos, bytecount, 0xFFFFFFFF)
+            pos = pos + 8 + bytecount
+
