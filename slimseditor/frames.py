@@ -1,13 +1,15 @@
 from collections import defaultdict
+from datetime import datetime
 from io import BytesIO
 
 import bimpy
 import crossfiledialog
 
+from diff_match_patch import diff_match_patch
 from mymcplus import ps2mc
 
 from slimseditor.backends import AbstractBackend, PS2WrappedBinBackend
-
+from slimseditor.hexdump import hexdump
 
 counter = 0
 
@@ -16,6 +18,11 @@ def get_next_count():
     global counter
     value, counter = counter, counter + 1
     return value
+
+
+def format_patchline(t, text):
+    text = text.strip('\n').replace('\n', '\n  ')
+    return f"{'+' if t == 1 else '-'} {text}"
 
 
 class FrameBase:
@@ -42,6 +49,7 @@ class SaveGameFrame(FrameBase):
         self.load_backend()
 
         self.name = '{0}##{1}'.format(self.backend.get_friendly_name(), get_next_count())
+        self.diff_string = ""
 
     def load_backend(self):
         self.backend = self.backend_class(*self.backend_args, **self.backend_kwargs)  # type: AbstractBackend
@@ -62,7 +70,11 @@ class SaveGameFrame(FrameBase):
                 bimpy.menu_item('Save', 'Cmd+S', self.click_states['save'])
                 bimpy.menu_item('Reload', 'Cmd+R', self.click_states['reload'])
                 bimpy.menu_item('Export', 'Cmd+E', self.click_states['export'])
+                bimpy.menu_item('Reload & Diff', 'Cmd+D', self.click_states['reload_and_diff'])
                 bimpy.end_menu_bar()
+
+            if self.diff_string:
+                bimpy.columns(2, "hex split")
 
             bimpy.text('Game: ')
             bimpy.same_line()
@@ -73,7 +85,25 @@ class SaveGameFrame(FrameBase):
                     for item in section_items:
                         item.render_widget()
 
+            if self.diff_string:
+                bimpy.next_column()
+                bimpy.text(self.diff_string)
+
             bimpy.end()
+
+    def reload_and_diff(self):
+        pre_reload_hex = hexdump(self.backend.data, print_ascii=False)
+        self.load_backend()
+        post_reload_hex = hexdump(self.backend.data, print_ascii=False)
+
+        patcher = diff_match_patch()
+        text1, text2, line_array = patcher.diff_linesToChars(pre_reload_hex, post_reload_hex)
+        diffs = patcher.diff_main(text1, text2)
+        patcher.diff_cleanupSemantic(diffs)
+        patcher.diff_charsToLines(diffs, line_array)
+        patch = '\n'.join(format_patchline(t, text) for t, text in diffs if t != 0)
+
+        self.diff_string = f'{datetime.now()}\n{patch}\n\n{self.diff_string}'
 
     def process_events(self):
         if self.click_states['save'].value:
@@ -84,6 +114,10 @@ class SaveGameFrame(FrameBase):
         if self.click_states['reload'].value:
             self.load_backend()
             self.click_states['reload'].value = False
+
+        if self.click_states['reload_and_diff'].value:
+            self.reload_and_diff()
+            self.click_states['reload_and_diff'].value = False
 
         if self.click_states['export'].value:
             filename = crossfiledialog.save_file()

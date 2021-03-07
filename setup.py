@@ -11,7 +11,7 @@ slimscbindings = Extension(
 
 setup(
     name='slimseditor',
-    version='0.0.5',
+    version='0.0.6',
     description='A savegame editor for the Ratchet and Clank games',
     author='Maikel Wever',
     author_email='maikelwever@gmail.com',
