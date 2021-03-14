@@ -87,7 +87,8 @@ class SaveGameFrame(FrameBase):
 
             if self.diff_string:
                 bimpy.next_column()
-                bimpy.text(self.diff_string)
+                for line in self.diff_string.splitlines():
+                    bimpy.text(line)
 
             bimpy.end()
 
@@ -97,6 +98,7 @@ class SaveGameFrame(FrameBase):
         post_reload_hex = hexdump(self.backend.data, print_ascii=False)
 
         patcher = diff_match_patch()
+        patcher.Diff_Timeout = 0
         text1, text2, line_array = patcher.diff_linesToChars(pre_reload_hex, post_reload_hex)
         diffs = patcher.diff_main(text1, text2)
         patcher.diff_cleanupSemantic(diffs)

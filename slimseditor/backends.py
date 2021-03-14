@@ -68,11 +68,11 @@ class SingleLittleEndianFileMixin:
 
     def read_item(self, item):
         struct_def = '<{0}'.format(item.struct_type)
-        item.value, = struct.unpack_from(struct_def, self.data, item.pos)
+        item.value = struct.unpack_from(struct_def, self.data, item.pos)
 
     def write_item(self, item):
         struct_def = '<{0}'.format(item.struct_type)
-        struct.pack_into(struct_def, self.data, item.pos, item.value)
+        struct.pack_into(struct_def, self.data, item.pos, *item.export_value)
 
 
 PS2_GAME_IDS = {
@@ -200,7 +200,7 @@ class PS3DecryptedBackend(AbstractBackend):
 
     def read_item(self, item):
         struct_def = '>{0}'.format(item.struct_type)
-        item.value, = struct.unpack_from(struct_def, self.data, item.pos)
+        item.value = struct.unpack_from(struct_def, self.data, item.pos)
 
     def write_data(self):
         data_file = os.path.join(self.path, self.get_filename())
@@ -209,7 +209,7 @@ class PS3DecryptedBackend(AbstractBackend):
 
     def write_item(self, item):
         struct_def = '>{0}'.format(item.struct_type)
-        struct.pack_into(struct_def, self.data, item.pos, item.value)
+        struct.pack_into(struct_def, self.data, item.pos, *item.export_value)
 
     def get_filename(self):
         if self.game in HD_REMASTER_GAMES:

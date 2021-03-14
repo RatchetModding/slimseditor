@@ -357,5 +357,12 @@
             "pos": 709,
             "type": "Boolean"
         }
+    ],
+    "Meta": [
+        {
+            "name": "Last edit",
+            "pos": 120,
+            "type": "DateTime"
+        }
     ]
 }

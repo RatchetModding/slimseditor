@@ -17,10 +17,14 @@ class AbstractSaveEntry:
     def value(self):
         return self._value
 
+    @property
+    def export_value(self):
+        return (self._value,)
+
     @value.setter
     def value(self, val):
-        self._value = val
-        self._bimpy_value.value = self.python_type(val)
+        self._value = val[0]
+        self._bimpy_value.value = self.python_type(val[0])
 
     def render_widget(self):
         pass
@@ -59,3 +63,31 @@ class Integer(AbstractSaveEntry):
     def render_widget(self):
         if bimpy.input_int(self.bimpy_name, self._bimpy_value):
             self._value = int(self._bimpy_value.value)
+
+
+class DateTime(AbstractSaveEntry):
+    struct_type = 'BBBBBBBB'
+    python_type = tuple
+    bimpy_type = bimpy.String
+
+    @property
+    def value(self):
+        _, s, i, h, _, d, m, y = self._value
+        return f'{y:02X}-{m:02X}-{d:02X} {h:02X}:{i:02X}:{s:02X}'
+
+    @property
+    def export_value(self):
+        return self._value
+
+    @value.setter
+    def value(self, val):
+        self._value = val
+        self._bimpy_value.value = self.value
+
+    def render_widget(self):
+        if bimpy.input_text(self.bimpy_name, self._bimpy_value, 20):
+            t = self._bimpy_value.value
+            his, ymd = t.split(' ')
+            h, i, s = his.split(':')
+            y, m, d = ymd.split('-')
+            self._value = (0, int(s), int(i), int(h), 0, int(d), int(m), int(y))

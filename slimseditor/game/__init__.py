@@ -5,13 +5,14 @@ import sys
 
 from enum import Enum
 
-from slimseditor.saveentry import RangedInteger, Integer, Boolean
+from slimseditor.saveentry import RangedInteger, Integer, Boolean, DateTime
 
 
 ITEM_CLASSES = {
     'RangedInteger': RangedInteger,
     'Integer': Integer,
     'Boolean': Boolean,
+    'DateTime': DateTime,
 }
 
 if getattr(sys, 'frozen', False):
