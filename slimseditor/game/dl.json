@@ -2,7 +2,7 @@
     "Bolt counts": [
         {
             "name": "Number of Bolts",
-            "pos": 40,
+            "pos": 36,
             "type": "Integer"
         },
         {
