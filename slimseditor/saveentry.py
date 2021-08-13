@@ -34,8 +34,10 @@ class RangedInteger(AbstractSaveEntry):
     struct_type = 'i'
     python_type = int
     bimpy_type = bimpy.Int
+    min = 0
+    max = 100
 
-    def __init__(self, name='', pos=0, max=100, min=0):
+    def __init__(self, name='', pos=0, max=max, min=min):
         super(RangedInteger, self).__init__(name=name, pos=pos)
         self.min = min
         self.max = max
@@ -65,6 +67,26 @@ class Integer(AbstractSaveEntry):
             self._value = int(self._bimpy_value.value)
 
 
+class UnsignedInteger(Integer):
+    struct_type = 'I'
+
+
+class Char(Integer):
+    struct_type = 'b'
+
+
+class UnsignedChar(Integer):
+    struct_type = 'B'
+
+
+class Short(Integer):
+    struct_type = 'h'
+
+
+class UnsignedShort(Integer):
+    struct_type = 'H'
+
+
 class DateTime(AbstractSaveEntry):
     struct_type = 'BBBBBBBB'
     python_type = tuple
@@ -91,3 +113,49 @@ class DateTime(AbstractSaveEntry):
             h, i, s = his.split(':')
             y, m, d = ymd.split('-')
             self._value = (0, int(s), int(i), int(h), 0, int(d), int(m), int(y))
+
+
+class BitField(AbstractSaveEntry):
+    struct_type = 'B'
+    python_type = int
+    bitmap = dict()
+    bitmap_values = dict()
+
+    def __init__(self, name='', pos=0, bitmap=None):
+        super(BitField, self).__init__(name, pos)
+        if bitmap is not None:
+            self.bitmap = bitmap
+        else:
+            self.bitmap = dict()
+
+        self.bitmap_values = dict()
+
+    def _test_bit(self, offset):
+        mask = 1 << offset
+        return (self._value & mask)
+
+    def _set_bit(self, offset):
+        mask = 1 << offset
+        self._value = (self._value | mask)
+
+    def _clear_bit(self, offset):
+        mask = ~(1 << offset)
+        self._value = (self._value & mask)
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, val):
+        self._value = val[0]
+        for key, pos in self.bitmap.items():
+            self.bitmap_values[key] = bimpy.Bool(self._test_bit(pos))
+
+    def render_widget(self):
+        for key, pos in self.bitmap.items():
+            if bimpy.checkbox(key, self.bitmap_values[key]):
+                if self.bitmap_values[key]:
+                    self._set_bit(pos)
+                else:
+                    self._clear_bit(pos)

@@ -5,14 +5,20 @@ import sys
 
 from enum import Enum
 
-from slimseditor.saveentry import RangedInteger, Integer, Boolean, DateTime
-
+from slimseditor.saveentry import RangedInteger, Integer, Boolean, DateTime, UnsignedInteger, UnsignedShort, \
+    UnsignedChar, Char, Short, BitField
 
 ITEM_CLASSES = {
     'RangedInteger': RangedInteger,
     'Integer': Integer,
+    'UnsignedInteger': UnsignedInteger,
+    'Char': Char,
+    'UnsignedChar': UnsignedChar,
+    'Short': Short,
+    'UnsignedShort': UnsignedShort,
     'Boolean': Boolean,
     'DateTime': DateTime,
+    'BitField': BitField,
 }
 
 if getattr(sys, 'frozen', False):
