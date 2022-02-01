@@ -6,7 +6,7 @@ import sys
 from enum import Enum
 
 from slimseditor.saveentry import RangedInteger, Integer, Boolean, DateTime, UnsignedInteger, UnsignedShort, \
-    UnsignedChar, Char, Short, BitField
+    UnsignedChar, Char, Short, BitField, Combo
 
 ITEM_CLASSES = {
     'RangedInteger': RangedInteger,
@@ -19,6 +19,7 @@ ITEM_CLASSES = {
     'Boolean': Boolean,
     'DateTime': DateTime,
     'BitField': BitField,
+    'Combo': Combo,
 }
 
 if getattr(sys, 'frozen', False):

@@ -159,3 +159,24 @@ class BitField(AbstractSaveEntry):
                     self._set_bit(pos)
                 else:
                     self._clear_bit(pos)
+
+
+class Combo(AbstractSaveEntry):
+    struct_type = 'i'
+    python_type = int
+    allowed_values = dict()
+
+    def __init__(self, name='', pos=0, allowed_values=None):
+        super(Combo, self).__init__(name, pos)
+        if (allowed_values is None) or \
+           (not isinstance(allowed_values, dict)) or \
+           (not all(isinstance(v, int) for v in allowed_values.values())):
+           raise RuntimeError("Field type Combo needs a mapping of allowed values")
+
+        self.allowed_values = allowed_values
+        self.allowed_values_list = list(allowed_values.keys())
+
+
+    def render_widget(self):
+        if bimpy.combo(self.bimpy_name, self._bimpy_value, self.allowed_values_list):
+            self._value = self.allowed_values[self.allowed_values_list[self._bimpy_value.value]]
