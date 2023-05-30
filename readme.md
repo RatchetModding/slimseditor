@@ -8,6 +8,10 @@ This can also include values that are not exposed by the game itself.
 
 **Always backup your savegames before loading them into Slim's Editor.**
 
+_This project is currently in a inactive and unfinished state. Since starting this, I haven't had much time to work on getting beyond the very basics of the editor._
+_If Slim's Editor doesn't work for your savegame, you can try the [previous version](https://github.com/maikelwever/rac-savegame-editor) of the editor to see if that helps._
+_Feel free to submit Pull requests with new features/values/fixes/etc._
+
 
 Supported file formats
 ----------------------
